@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Andi Kamaludin</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0d0f12;
+            --bg-card: #16191f;
+            --accent: #d61c4e;
+            --accent-yellow: #fac213;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #232730;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(13, 15, 18, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 8%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1.5px;
+            color: var(--text-main);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero */
+        header.hero {
+            padding: 6rem 8% 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background-color: rgba(214, 28, 78, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .skills-tag {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skills-tag span {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Section Layout */
+        section {
+            padding: 4rem 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Card Link Wrapper */
+        .project-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .project-card-link:hover .card {
+            transform: translateY(-6px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(214, 28, 78, 0.15);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 240px;
+            background-color: #2a2f3b;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card-link:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent-yellow);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .card-cta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 8%;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer h2 {
+            font-size: 1.6rem;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            opacity: 0.85;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav>
+        <div class="logo">Andi <span>Kamaludin</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#desain">Desain Grafis</a></li>
+            <li><a href="#fotografi">Fotografi</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="about">
+        <span class="badge">Portofolio Kreatif</span>
+        <h1>Haii.. Aku Andi Kamaludin</h1>
+        <p>
+            Mahasiswa Ilmu Komunikasi Universitas Trunojoyo Madura dengan passion dalam bidang Desain Grafis, Fotografi, dan Videografi. Memiliki minat kuat pada Public Speaking untuk menjembatani komunikasi ide visual dengan calon klien secara profesional.
+        </p>
+        <div class="skills-tag">
+            <span>🎨 Graphic Design</span>
+            <span>📷 Photography</span>
+        </div>
+    </header>
+
+    <!-- Bagian Projek Desain Grafis -->
+    <section id="desain">
+        <div class="section-header">
+            <h2>Projek Desain Grafis</h2>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- 1. Projek Magazine Collage -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('magazine')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Magazine/Coverr.jpg" alt="Projek Desain Kolase Magazine" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Layout & Art Direction</span>
+                        <h3>Desain Kolase Magazine</h3>
+                        <p>Eksplorasi tata letak magazine bergaya kolase dokumentasi wisuda dan wali kelas bertajuk "The Final Chapter".</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 2. Projek Rebranding Travel -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('travel')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Project KWU/Logo Jaya Wijaya pt 2-02.jpg" alt="Rebranding Daya Wijaya Travel" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Rebranding & Merchandise MockUp</span>
+                        <h3>Jaya Wijaya Travel</h3>
+                        <p>Konsep identitas baru, perancangan tipografi logo, serta penerapannya pada merchandise gantungan kunci.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 3. Brand Identity Ayam Tangkap Zikra -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('zikra')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Ayam Tangkap/Untitled-1-02.png" alt="Ayam Tangkap Zikra" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Brand Identity & Guideline</span>
+                        <h3>Ayam Tangkap Zikra</h3>
+                        <p>Pengembangan brand identity komprehensif: logo, filosofi rasa tradisi Aceh, palet warna, dan guideline tipografi.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+
+             <!-- 4. Brand Identity Cphybars -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('cphybars')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Cphybars/Logo Chpybrs-06.jpg" alt="Cphybars" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Brand Identity</span>
+                        <h3>Cphybars</h3>
+                        <p>Pengembangan konsep brand identity :logo, poster agency yang memiliki fokus pada bidang pengembangan website, Copywriting, dan Penyedia Aplikasi Premium.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+
+             <!-- 5. Ilustrasi -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('illustration')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Rafflesia Arnoldi.jpg" alt="Rafflesia Arnoldi" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Illustration</span>
+                        <h3>Rafflesia Arnoldi</h3>
+                        <p>Ilustrasi detail dari bunga Rafflesia Arnoldi, salah satu bunga terbesar di dunia.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Bagian Fotografi -->
+    <section id="fotografi">
+        <div class="section-header">
+            <h2>Karya Fotografi</h2>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- 4. Animal Photography -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('nature')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/nature/IMG_3162.jpg.jpeg" alt="Nature Photography" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Nature Photography</span>
+                        <h3>Wildlife & Fauna</h3>
+                        <p>Eksplorasi foto alam dengan komposisi natural, ketajaman detail fauna air dan hewan peliharaan.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 5. Commercial / Product -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('product')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Studio/Studio2.jpeg" alt="Studio Photography" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Studio Photography</span>
+                        <h3>Model Photography</h3>
+                        <p>Eksplorasi foto model di studio dengan penekanan pada studio lighting lembut dan pencahayaan stabil.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- 6. Baby Photography -->
+            <a href="javascript:void(0)" onclick="openProjectDetail('baby')" class="project-card-link">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="images/Baby/DSCF1200.jpg.jpeg" alt="Baby Photography" class="card-img">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag">Baby Photography</span>
+                        <h3>Portrait & Candid</h3>
+                        <p>Eksplorasi foto bayi dengan gaya natural dan hangat, menangkap momen-momen spesial dalam kehidupan keluarga.</p>
+                        <span class="card-cta">Buka Detail Projek &nearr;</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak">
+        <h2>TERIMA KASIH</h2>
+        <p>Tertarik untuk berkolaborasi atau mendiskusikan projek visual selanjutnya?</p>
+        <a href="https://wa.me/6285854541032" class="btn-contact">Hubungi Saya</a>
+        <p style="margin-top: 2rem; font-size: 0.8rem; color: #6b7280;">
+            &copy; Andi Kamaludin. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- Script Pembuka Halaman Detail di Tab Baru -->
+    <script>
+    const projectData = {
+        magazine: {
+            title: "Projek Desain Kolase Magazine - The Final Chapter",
+            category: "Layout Design & Art Direction",
+            description: "Projek tata letak majalah dokumentasi wisuda dan wali kelas. Menggabungkan konsep kolase multi-foto, gaya polaroid, dan estetika album kenangan modern.",
+            role: "Lead Layout Designer & Art Director",
+            tools: "Adobe Photoshop, InDesign",
+            highlights: [
+                "Komposisi kolase foto dinamis",
+                "Tipografi editorial nostalgia",
+                "Penyusunan grid momen acara"
+            ],
+            // Masukkan daftar foto desainmu di sini:
+            images: [
+                "images/Magazine/Coverr.jpg",
+                "images/Magazine/Halaman1.jpg",
+                "images/Magazine/Halaman2.jpg",
+                "images/Magazine/Halaman3.jpg",
+                "images/Magazine/Halaman4.jpg",
+                "images/Magazine/Halaman5.jpg",
+            ]
+        },
+        travel: {
+            title: "Rebranding Jaya Wijaya Travel",
+            category: "Branding & Merchandise",
+            description: "Perancangan identitas visual baru untuk travel armada, logo typografi modern, dan aplikasi produk gantungan kunci kulit sintetis.",
+            role: "Brand Identity Designer",
+            tools: "Adobe Illustrator, Photoshop",
+            highlights: [
+                "Desain logo baru",
+                "Mockup gantungan kunci tampak depan & belakang",
+                "Implementasi palet warna armada"
+            ],
+            images: [
+                "images/Project KWU/MockUp 1.jpg",
+                "images/Project KWU/MockUp 2.jpg",
+                "images/Project KWU/Logo Jaya Wijaya pt 2-02.jpg",
+                "images/Project KWU/Logo Jaya Wijaya pt 2-01.jpg"
+            ]
+        },
+        zikra: {
+            title: "Brand Identity Ayam Tangkap Zikra",
+            category: "Brand Guideline & Typography",
+            description: "Pengembangan identitas jenama kuliner khas Aceh, mencakup stilasi logo ayam etnik, panduan tipografi headline/body text, dan palet warna primer.",
+            role: "Graphic & Brand Designer",
+            tools: "Adobe Illustrator",
+            highlights: [
+                "Logo icon ayam ornamen etnik",
+                "Tipografi Mont Heavy & Montserrat Medium",
+                "Palet warna primer merah & kuning"
+            ],
+            images: [
+                "images/Ayam Tangkap/Untitled-1-02.png",
+                "images/Ayam Tangkap/Untitled-1-01.png",
+                "images/Ayam Tangkap/Untitled-1-03.png",
+                "images/Ayam Tangkap/Feed Instagram.jpg",
+                "images/Ayam Tangkap/Moodboard-01.jpg",
+            ]
+        },
+        cphybars: {
+            title: "Brand Identity Cphybars",
+            category: "Branding & Poster Design",
+            description: "Perancangan identitas visual untuk Cphybars, mencakup logo modern, poster promosi, dan panduan tipografi untuk branding digital.",
+            role: "Brand Identity Designer",
+            tools: "Adobe Illustrator, Canva",
+            highlights: [
+                "Logo minimalis dan modern",
+                "Poster promosi dengan komposisi dinamis",
+                "Panduan tipografi untuk branding"
+            ],
+            images: [
+                "images/Cphybars/Logo Chpybrs-06.jpg",
+                "images/Cphybars/Logo Chpybrs-05.jpg",
+                "images/Cphybars/Copy.png",
+                "images/Cphybars/Premium.png",
+                "images/Cphybars/Website.png"
+            ]
+        },
+        illustration: {
+            title: "Ilustrasi Rafflesia Arnoldi",
+            category: "Digital Illustration",
+            description: "Ilustrasi digital bunga Rafflesia Arnoldi, menekankan detail tekstur kelopak dan warna alami untuk keperluan edukasi dan publikasi.",
+            role: "Digital Illustrator",
+            tools: "Adobe Illustrator, Wacom Tablet",
+            highlights: [
+                "Detail tekstur kelopak bunga",
+                "Warna alami dan realistis",
+                "Komposisi ilustrasi edukatif"
+            ],
+            images: [
+                "images/Rafflesia Arnoldi.jpg"
+            ]
+        },
+        nature: {
+            title: "Nature Photography",
+            category: "Nature Photography",
+            description: "Sesi fotografi alam luar ruangan dengan teknik penangkapan fokus tajam, tekstur bulu, dan interaksi alami hewan.",
+            role: "Photographer & Retoucher",
+            tools: "Mirrorless/DSLR Camera, Adobe Lightroom",
+            highlights: [
+                "Pencahayaan alami dan refleksi air",
+                "Detail fokus mata dan ekspresi fauna",
+                "Color grading natural"
+            ],
+            images: [
+                "images/nature/IMG_3162.jpg.jpeg",
+                "images/nature/kucing1.jpeg",
+            ]
+        },
+        product: {
+            title: "Model Studio Photography",
+            category: "Model & Studio Lighting",
+            description: "Eksplorasi foto model di studio dengan penekanan pada studio lighting lembut dan pencahayaan stabil.",
+            role: "Commercial Photographer",
+            tools: "Studio Lighting, Lightroom, Photoshop",
+            highlights: [
+                "Pengaturan pencahayaan studio profesional",
+                "Pengaturan pose model profesional",
+                "Penyelarasan kontras warna dan tone kulit"
+            ],
+            images: [
+                "images/Studio/Studio1.jpeg",
+                "images/Studio/Studio2.jpeg"
+            ]
+        },
+        baby: {
+            title: "Baby Photography",
+            category: "Portrait & Candid",
+            description: "Sesi fotografi bayi dengan gaya natural dan hangat, menangkap momen-momen spesial dalam kehidupan keluarga.",
+            role: "Family & Baby Photographer",
+            tools: "DSLR Camera, Softbox Lighting, Lightroom",
+            highlights: [
+                "Pengaturan pencahayaan lembut untuk bayi",
+                "Momen candid dan ekspresi alami",
+                "Editing warna hangat dan lembut"
+            ],
+            images: [
+                "images/Baby/DSCF1200.jpg.jpeg",
+                "images/Baby/DSCF1302.jpg.jpeg",
+                "images/Baby/DSCF1431.jpg.jpeg"
+            ]
+        }
+    };
+    
+
+    function openProjectDetail(key) {
+        const data = projectData[key];
+        if (!data) return;
+
+        const newTab = window.open('', '_blank');
+
+        // Buat galeri foto secara otomatis
+        const imagesMarkup = data.images.map(img => `
+            <div class="gallery-item">
+                <img src="${img}" alt="${data.title}" loading="lazy">
+            </div>
+        `).join('');
+
+        const detailHTML = `
+            <!DOCTYPE html>
+            <html lang="id">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${data.title} - Detail Projek</title>
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+                <style>
+                    body {
+                        background-color: #0d0f12;
+                        color: #f3f4f6;
+                        font-family: 'Plus Jakarta Sans', sans-serif;
+                        line-height: 1.7;
+                        padding: 3rem 8%;
+                        margin: 0;
+                    }
+                    .container {
+                        max-width: 1000px;
+                        margin: 0 auto;
+                    }
+                    .back-btn {
+                        display: inline-block;
+                        margin-bottom: 2rem;
+                        color: #d61c4e;
+                        text-decoration: none;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                    .tag {
+                        color: #fac213;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        font-size: 0.85rem;
+                    }
+                    h1 {
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 2.2rem;
+                        font-weight: 800;
+                        margin: 0.5rem 0 1.5rem;
+                    }
+                    
+                    /* Grid Galeri Banyak Gambar */
+                    .gallery-container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 1.5rem;
+                        margin-bottom: 3rem;
+                    }
+                    .gallery-item {
+                        background: #16191f;
+                        border: 1px solid #232730;
+                        border-radius: 12px;
+                        overflow: hidden;
+                    }
+                    .gallery-item img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        object-fit: contain;
+                    }
+
+                    .meta-box {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 1.5rem;
+                        background: #16191f;
+                        padding: 1.5rem;
+                        border-radius: 10px;
+                        border: 1px solid #232730;
+                        margin-bottom: 2.5rem;
+                    }
+                    .meta-item h4 {
+                        color: #9ca3af;
+                        font-size: 0.8rem;
+                        text-transform: uppercase;
+                        margin-bottom: 0.3rem;
+                    }
+                    .meta-item p {
+                        font-weight: 600;
+                        margin: 0;
+                    }
+                    .section-title {
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1.4rem;
+                        margin: 2rem 0 1rem;
+                        border-left: 4px solid #d61c4e;
+                        padding-left: 12px;
+                    }
+                    ul {
+                        padding-left: 20px;
+                        color: #d1d5db;
+                    }
+                    li {
+                        margin-bottom: 0.5rem;
+                    }
+                    p {
+                        color: #d1d5db;
+                    }
+                    footer {
+                        margin-top: 4rem;
+                        border-top: 1px solid #232730;
+                        padding-top: 2rem;
+                        text-align: center;
+                        color: #6b7280;
+                        font-size: 0.85rem;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <a onclick="window.close()" class="back-btn">&larr; Tutup Tab Ini</a>
+                    <div><span class="tag">${data.category}</span></div>
+                    <h1>${data.title}</h1>
+
+                    <!-- Galeri Gambar -->
+                    <div class="gallery-container">
+                        ${imagesMarkup}
+                    </div>
+
+                    <div class="meta-box">
+                        <div class="meta-item">
+                            <h4>Peran</h4>
+                            <p>${data.role}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Software / Alat</h4>
+                            <p>${data.tools}</p>
+                        </div>
+                        <div class="meta-item">
+                            <h4>Kategori</h4>
+                            <p>${data.category}</p>
+                        </div>
+                    </div>
+
+                    <h3 class="section-title">Tentang Projek</h3>
+                    <p>${data.description}</p>
+
+                    <h3 class="section-title">Poin Kunci Pengerjaan</h3>
+                    <ul>
+                        ${data.highlights.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+
+                    <footer>
+                        <p>Portofolio Andi Kamaludin &bull; Desain Grafis & Fotografi</p>
+                    </footer>
+                </div>
+            </body>
+            </html>
+        `;
+
+        newTab.document.open();
+        newTab.document.write(detailHTML);
+        newTab.document.close();
+    }
+</script>
+</body>
+</html>
